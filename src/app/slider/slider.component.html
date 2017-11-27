@@ -1,0 +1,13 @@
+<div class="slider-wrapper">
+	<div class="main-image">
+		<img [(src)]="activeSlide.src" alt="">
+	</div>
+	<div class="thumbs-container">
+		<div *ngFor="let image of images" class="slide">
+			<img
+				[src]="image.src"
+				(click)="changeSlide(image)"
+				alt="">
+		</div>
+	</div>
+</div>

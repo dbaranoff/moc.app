@@ -1,0 +1,33 @@
+.page-header {
+	position: fixed;
+	top: 0;
+	height: 70px;
+	width: 100%;
+	background: rgba(255,255,255, 0.85);
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	-moz-flex-direction: row;
+	-ms-flex-direction: row;
+	-o-flex-direction: row;
+	flex-direction: row;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.site-title {
+	display: inline-block;
+	margin-right: auto;
+}
+
+.content-main {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding-left: 15px;
+	padding-right: 15px;
+}

@@ -1,0 +1,11 @@
+<div class="product-container">
+	<app-slider [images]="product.images"></app-slider>
+	<div class="content">
+		<h3 class="product-title" id={{product.id}}>{{product.title}}</h3>
+		<div [innerHTML]="product.body_html"></div>
+		<span class="price">
+			{{product.variants[0].price | currency}}
+		</span>
+		<button class="btn btn-add">Add to basket</button>
+	</div>
+</div>
