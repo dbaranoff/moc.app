@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -14,6 +15,8 @@ import { SliderComponent } from './slider/slider.component';
 import { NavComponent } from './nav/nav.component';
 import { AppRoutingModule } from './/app-routing.module';
 
+import { reducers, metaReducers } from './_store/reducers/reducers';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import { AppRoutingModule } from './/app-routing.module';
   imports: [
     BrowserModule,
 		HttpClientModule,
-		AppRoutingModule
+		AppRoutingModule,
+    StoreModule.forRoot(reducers, {metaReducers})
   ],
   providers: [
 		DataService,

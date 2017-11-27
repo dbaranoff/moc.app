@@ -10,19 +10,19 @@ import { Product } from '../product.model';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-	
-//	data: Product[];
-	data: any[];
+
+data: Product[];
+//   data: any[];
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-		this.getProducts();
+    this.getProducts();
   }
-	
-	getProducts(): void {
+
+  getProducts(): void {
     this.dataService.getProducts()
-    	.subscribe(data => this.data = data['products']);
-	}
+      .subscribe(data => this.data = data['products']);
+  }
 
 }

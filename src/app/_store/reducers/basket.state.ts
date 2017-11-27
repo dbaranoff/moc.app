@@ -1,8 +1,8 @@
 import { Product } from '../../product.model';
 
 export interface AppState {
-	cart: CartState;
+  basket: BasketState;
 }
-export interface CartState {
-	items: Product[];
+export interface BasketState {
+  items: Product[];
 }

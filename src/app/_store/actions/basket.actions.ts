@@ -1,13 +1,31 @@
-import { Action } from '@ngrx/store';
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from "rxjs/Observable";
 
-export const ADD_TO_BASKET = 'Add product to Basket';
-export const DELETE_FROM_BASKET = 'Delete product from Basket';
+import { Product } from '../../product.model';
 
-export class AddProductAction implements Action {
-  readonly type = ADD_TO_BASKET;
+function get_action(action) {
+  return action;
 }
-export class DeleteProductAction implements Action {
-  readonly type = DELETE_FROM_BASKET;
 
-  constructor(public payload: Product[]) {}
-} 
+export const Actions = {
+  ADD_TO_BASKET: get_action('Add product to Basket'),
+  DELETE_FROM_BASKET: get_action('Delete product from Basket')
+};
+
+@Injectable()
+export class BasketAction  {
+
+  constructor(private store: Store<Product[]>) {}
+
+  getState(): Observable<Product[]> {
+    return this.store.select('basket');
+  }
+
+  addProduct(product: Product): void {
+    this.store.dispatch({
+      type: Actions.ADD_TO_BASKET,
+      payload: {product}
+    });
+  }
+}

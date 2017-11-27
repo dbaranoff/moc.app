@@ -9,30 +9,30 @@ import { Product } from './product.model';
 
 @Injectable()
 export class DataService {
-	private dataUrl = 'https://shop.bremont.com/products.json';
+  private dataUrl = 'https://shop.bremont.com/products.json';
 
-	constructor(
-	private http: HttpClient
-	) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
-	getProducts(): Observable<Product[]> {
-		return this.http.get<Product[]>(this.dataUrl)
-			.pipe(
-			catchError(this.handleError('getProducts', []))
-		);
-	}
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.dataUrl)
+      .pipe(
+        catchError(this.handleError('getProducts', []))
+      );
+  }
 
-	private handleError<T> (operation = 'operation', result?: T) {
-		return (error: any): Observable<T> => {
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
 
-			// TODO: send the error to remote logging infrastructure
-			console.error(error); // log to console instead
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
 
-			// TODO: better job of transforming error for user consumption
-			console.log(`${operation} failed: ${error.message}`);
+      // TODO: better job of transforming error for user consumption
+      console.log(`${operation} failed: ${error.message}`);
 
-			// Let the app keep running by returning an empty result.
-			return of(result as T);
-		};
-	}
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
 }
