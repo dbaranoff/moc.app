@@ -5,7 +5,6 @@ import { StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 
 import { DataService } from './data.service';
-import { BasketService } from './basket.service';
 
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './product-list/product-list.component';
@@ -14,8 +13,8 @@ import { BasketComponent } from './basket/basket.component';
 import { SliderComponent } from './slider/slider.component';
 import { NavComponent } from './nav/nav.component';
 import { AppRoutingModule } from './/app-routing.module';
-
-import { reducers, metaReducers } from './_store/reducers/reducers';
+import { ACTIONS } from './_store/actions';
+import { reducers } from './_store/reducers';
 
 
 @NgModule({
@@ -29,14 +28,14 @@ import { reducers, metaReducers } from './_store/reducers/reducers';
   ],
   imports: [
     BrowserModule,
-		HttpClientModule,
-		AppRoutingModule,
-    StoreModule.forRoot(reducers, {metaReducers})
+    HttpClientModule,
+    AppRoutingModule,
+    StoreModule.forRoot(reducers)
   ],
   providers: [
-		DataService,
-		BasketService
-	],
+    DataService,
+    ACTIONS,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
