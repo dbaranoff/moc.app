@@ -1,12 +1,20 @@
 import { Injectable } from '@angular/core';
-import { ProductComponent } from './product/product.component';
-import { BasketComponent } from './basket/basket.component';
 
-import { Product } from './product.model'
+import { BasketAction } from './_store/actions/basket.actions';
+
+import { Product } from './product.model';
 
 @Injectable()
 export class BasketService {
 
-  constructor() { }
+  constructor(private ba: BasketAction) { }
+
+  getState() {
+    this.ba.getState();
+  }
+
+  countSum(products: Product[]): number {
+    return 1;
+  }
 
 }

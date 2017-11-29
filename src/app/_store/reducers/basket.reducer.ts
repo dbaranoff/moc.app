@@ -1,29 +1,35 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as fromActions from '../actions/basket.actions';
-import { BasketState } from './basket.state';
-
+import { Action } from '@ngrx/store';
+import { Actions } from '../actions/basket.actions';
 import { Product } from '../../product.model';
 
-export const initialState: BasketState = { items: []};
+const initialState = {
+  items: []
+};
 
-export function reducer(state = initialState, action: fromActions.All): BasketState {
-  switch(action.type) {
-    case fromActions.ADD_TO_BASKET: {
-      return {items: this.payload};
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case Actions.ADD_TO_BASKET: {
+      const addProduct = Object.assign({}, action.payload.product);
+      addProduct.quantity = action.payload.quantity;
+      addProduct.price = (parseInt(addProduct.price) * parseInt(addProduct.quantity)).toFixed(2);
+      return {
+        ...state,
+        items: [
+          ...state.items,
+          addProduct
+        ]
+      };
     }
-    case fromActions.DELETE_FROM_BASKET: {
-      return {items: this.payload};
-
+    case Actions.DELETE_FROM_BASKET: {
+      const index = state.items.findIndex((product) => product.id === action.payload.id);
+      return {
+        ...state,
+        items: [
+          ...state.items.slice(0, index),
+          ...state.items.slice(index + 1)
+        ]
+      };
     }
-    default: {
-      return state;
-    }
+    default: return state;
   }
-}
-
-export const getBasketState = createFeatureSelector<BasketState>('basket');
-
-export const getBasket = createSelector(
-  getBasketState,
-  (state: BasketState) => state.items
-);
+};

@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { BasketService } from '../basket.service';
-
-import {ADD_TO_BASKET, AddProductAction} from '../_store/actions/basket.actions';
+import { BasketAction } from '../_store/actions/basket.actions';
 
 import { Product } from '../product.model';
 
@@ -15,15 +13,15 @@ import { Product } from '../product.model';
 export class ProductComponent implements OnInit {
 
   @Input() product: Product;
+  quantity: number;
 
   constructor(
-    private bs: BasketService,
-    private basketStore: AddProductAction
+  private bs: BasketAction
   ) {	}
 
   ngOnInit() { }
 
   addToBasket(product) {
-     // this.basketStore.type('ADD_TO_BASKET');
+    this.bs.addProduct(product, this.quantity || 1);
   }
 }
