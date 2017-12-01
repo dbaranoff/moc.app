@@ -13,7 +13,7 @@ import { BasketComponent } from './basket/basket.component';
 import { SliderComponent } from './slider/slider.component';
 import { NavComponent } from './nav/nav.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { ACTIONS } from './_store/actions';
+import { BasketAction } from './_store/actions/basket.actions';
 import { reducers } from './_store/reducers';
 
 
@@ -34,7 +34,7 @@ import { reducers } from './_store/reducers';
   ],
   providers: [
     DataService,
-    ACTIONS,
+    BasketAction
   ],
   bootstrap: [AppComponent]
 })

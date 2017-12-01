@@ -1,45 +1,37 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { IAppState } from './basket.state';
 import { Observable } from 'rxjs/Observable';
-
-import { IAppState } from '../reducers';
-
 import { Product } from '../../product.model';
 
-function get_action(action) {
-  return action;
-}
-
-export const Actions = {
-  ADD_TO_BASKET: get_action('Add product to Basket'),
-  DELETE_FROM_BASKET: get_action('Delete product from Basket')
-};
-
 @Injectable()
-export class BasketAction  {
+export class BasketAction {
 
-  constructor(private store: Store<IAppState>) { }
+  private basket: Observable<Product[]>;
 
-  getState(): Observable<any> {
-        return this.store.select('basket');
-    }
-
-  addProduct(product: Product, quantity: number) {
-    console.log('Addint to Basket - ', product.id);
-    this.store.dispatch({
-      type: Actions.ADD_TO_BASKET,
-      payload: {
-        product,
-        quantity
-      }
-    });
+  constructor(
+    private store: Store<IAppState>
+  ) {
+    this.basket = this.store.select('basket');
   }
 
-  deleteProduct(product) {
-    console.log('Removing from Basket - ', product);
-    this.store.dispatch({
-      type: Actions.DELETE_FROM_BASKET,
-      payload: product
-    });
+  getCount() {
+    this.store.select('basket').dispatch({type: 'GET_COUNT'});
+  }
+
+  getState() {
+    this.store.select('basket').dispatch({type: 'GET_STATE'});
+  }
+
+  addProduct(product: Product) {
+    this.store.select('basket').dispatch({type: 'ADD_PRODUCT', payload: product});
+  }
+
+  removeProduct(product: Product) {
+    this.store.select('basket').dispatch({type: 'REMOVE_PRODUCT', payload: product});
+  }
+
+  resetBasket() {
+    this.store.select('basket').dispatch({type: 'RESET_BASKET'});
   }
 }

@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-
-import { BasketAction } from '../_store/actions/basket.actions';
-
 import { Product } from '../product.model';
+import {BasketAction} from '../_store/actions/basket.actions';
 
 @Component({
   selector: 'app-product',
@@ -15,13 +13,12 @@ export class ProductComponent implements OnInit {
   @Input() product: Product;
   quantity: number;
 
-  constructor(
-  private bs: BasketAction
-  ) {	}
+  constructor( private basketAction: BasketAction
+  ) {}
 
   ngOnInit() { }
 
   addToBasket(product) {
-    this.bs.addProduct(product, this.quantity || 1);
+    this.basketAction.addProduct(product);
   }
 }

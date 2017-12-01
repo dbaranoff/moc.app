@@ -1,31 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { BasketAction } from '../_store/actions/basket.actions';
-import { BasketService } from '../basket.service';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 
 import { Product } from '../product.model';
-
+import { BasketAction } from '../_store/actions/basket.actions';
+import { Store } from '@ngrx/store';
+import {IAppState} from '../_store/actions/basket.state';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'app-basket',
     templateUrl: './basket.component.html',
     styleUrls: ['./basket.component.css'],
-    providers: [ BasketService ]
-
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-
 
 export class BasketComponent implements OnInit {
 
-  public items: Product[];
-  public total: number;
+  basket: Store<Product[]>;
 
-    constructor(private ba: BasketAction, bs: BasketService) { }
-
-    ngOnInit() {
-      this.ba.getState();
+    constructor(
+      private store: Store<IAppState>,
+      private ba: BasketAction
+    ) {
+      this.basket = this.store.select('basket');
     }
 
-    remove(product) {
-      this.ba.deleteProduct(product);
+    ngOnInit() {
+      this.getState();
+      console.log('basket', this.basket);
+    }
+
+    getState() {
+      this.ba.getState();
     }
 }

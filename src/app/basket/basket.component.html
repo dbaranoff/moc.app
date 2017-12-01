@@ -1,5 +1,6 @@
-<div class="basket">
-<div *ngIf>
-  
+<div>
+  <div *ngFor="let item of state">
+  {{item}}
+  </div>
 </div>
-</div>
+<span class="no-bakset-items" *ngIf="!state">Please, make your choice...</span>

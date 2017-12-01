@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import {Product} from './product.model';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  products: Product[];
   site_title = 'Pretty Shop!';
+
+  constructor(
+
+  ) {}
+
 }

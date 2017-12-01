@@ -14,7 +14,7 @@ export class ProductListComponent implements OnInit {
 data: Product[];
 //   data: any[];
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {
     this.getProducts();
@@ -24,5 +24,4 @@ data: Product[];
     this.dataService.getProducts()
       .subscribe(data => this.data = data['products']);
   }
-
 }
