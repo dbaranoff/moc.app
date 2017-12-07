@@ -1,4 +1,7 @@
 import { IAppState } from '../actions/basket.state';
+import {Product} from '../../product.model';
+import {Observable} from 'rxjs/Observable';
+import {ActionReducer} from '@ngrx/store';
 
 const initialState: IAppState = {
   basket: []
@@ -12,10 +15,10 @@ export const basketActions = {
   RESET_BASKET: 'RESET_BASKET'
 };
 
-export function basketReducer(state: IAppState = initialState, action) {
+export function basketReducer(state = initialState, action): IAppState  {
   switch (action.type) {
     case basketActions.GET_COUNT:
-      return state.basket.length;
+      return state;
 
     case basketActions.GET_STATE:
       console.log('getting state', state);
@@ -30,21 +33,21 @@ export function basketReducer(state: IAppState = initialState, action) {
           ...state.basket,
           productToAdd
         ]
-      }
+      };
 
-    case basketActions.REMOVE_PRODUCT:
+    // case basketActions.REMOVE_PRODUCT:
       // const index = state((product) => product.id === action.payload.id);
       // console.log(state,action);
-      return {
+      // return {
         // ...state,
         // items: [
         //   ...state.items.slice(0, index),
         //   ...state.items.slice(index + 1)
         // ]
-      };
+      // };
 
     case basketActions.RESET_BASKET:
-      return state.basket = initialState.basket;
+      return state = initialState;
 
     default:
       return state;

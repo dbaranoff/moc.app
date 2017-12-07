@@ -2,9 +2,6 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 
 import { Product } from '../product.model';
 import { BasketAction } from '../_store/actions/basket.actions';
-import { Store } from '@ngrx/store';
-import {IAppState} from '../_store/actions/basket.state';
-import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'app-basket',
@@ -15,21 +12,17 @@ import {Observable} from 'rxjs/Observable';
 
 export class BasketComponent implements OnInit {
 
-  basket: Store<Product[]>;
+  public basket: Product[];
 
     constructor(
-      private store: Store<IAppState>,
-      private ba: BasketAction
-    ) {
-      this.basket = this.store.select('basket');
-    }
+      private ba: BasketAction,
+    ) { }
 
     ngOnInit() {
       this.getState();
-      console.log('basket', this.basket);
     }
 
-    getState() {
+  getState() {
       this.ba.getState();
     }
 }

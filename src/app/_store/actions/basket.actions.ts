@@ -20,7 +20,7 @@ export class BasketAction {
   }
 
   getState() {
-    this.store.select('basket').dispatch({type: 'GET_STATE'});
+    return this.store.select('basket').dispatch({type: 'GET_STATE'});
   }
 
   addProduct(product: Product) {

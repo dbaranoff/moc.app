@@ -14,7 +14,8 @@ import { SliderComponent } from './slider/slider.component';
 import { NavComponent } from './nav/nav.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { BasketAction } from './_store/actions/basket.actions';
-import { reducers } from './_store/reducers';
+// import { reducers } from './_store/reducers'; // touching store v2
+import { metaReducer } from './common/index';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { reducers } from './_store/reducers';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    StoreModule.forRoot(reducers)
+    StoreModule.forRoot({reducer: metaReducer})
   ],
   providers: [
     DataService,

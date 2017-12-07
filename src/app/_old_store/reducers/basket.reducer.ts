@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Actions } from '../actions/basket.actions';
 import { Product } from '../../product.model';
+import {Observable} from 'rxjs/Observable';
 
 const initialState = {
   items: []
@@ -8,14 +9,14 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case Actions.GET_STATE: {
+    case Actions.GET_STATE:  {
       return state;
     }
     case Actions.ADD_TO_BASKET: {
       console.log(state, action);
       const addProduct = Object.assign({}, action.payload.product);
       addProduct.quantity = action.payload.quantity;
-      addProduct.price = (parseInt(addProduct.price) * parseInt(addProduct.quantity)).toFixed(2);
+      addProduct.price = (parseInt(addProduct.price, 10) * parseInt(addProduct.quantity, 10)).toFixed(2);
       return {
         ...state,
         items: [
@@ -26,7 +27,7 @@ export default (state = initialState, action) => {
     }
     case Actions.DELETE_FROM_BASKET: {
       const index = state.items.findIndex((product) => product.id === action.payload.id);
-      console.log(state,action);
+      console.log(state, action);
       return {
         ...state,
         items: [
