@@ -1,6 +1,23 @@
-<div>
-  <div *ngFor="let item of state">
-  {{item}}
-  </div>
+<h2>Basket Contents:</h2>
+
+<div *ngIf="basket">
+	<ul class="basket-list product-list">
+		<li *ngFor="let product of basket">
+
+			<div class="product-container">
+				<app-slider [images]="product.images"></app-slider>
+				<div class="content">
+					<h3 class="product-title" id={{product.id}}>{{product.title}}</h3>
+					<div [innerHTML]="product.body_html"></div>
+					<span class="price"> {{product.variants[0].price |
+						currency}} </span>
+					<button class="btn btn-add" (click)="removeProduct(product)">Remove
+						from basket</button>
+				</div>
+			</div>
+		</li>
+
+	</ul>
 </div>
-<span class="no-bakset-items" *ngIf="!state">Please, make your choice...</span>
+
+<div *ngIf="!basket">Please, add Products to the Basket!</div>

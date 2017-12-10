@@ -5,17 +5,17 @@ const initialState: IAppState = {
 };
 
 export const basketActions = {
-  GET_COUNT: 'GET_COUNT',
+//  GET_COUNT: 'GET_COUNT',
   GET_STATE: 'GET_STATE',
   ADD_PRODUCT: 'ADD_PRODUCT',
   REMOVE_PRODUCT: 'REMOVE_PRODUCT',
   RESET_BASKET: 'RESET_BASKET'
 };
 
-export function basketReducer(state: IAppState = initialState, action) {
+export function basketReducer(state: IAppState = initialState, action): IAppState {
   switch (action.type) {
-    case basketActions.GET_COUNT:
-      return state.basket.length;
+//    case basketActions.GET_COUNT:
+//      return state.basket.length;
 
     case basketActions.GET_STATE:
       console.log('getting state', state);
@@ -35,16 +35,16 @@ export function basketReducer(state: IAppState = initialState, action) {
     case basketActions.REMOVE_PRODUCT:
       // const index = state((product) => product.id === action.payload.id);
       // console.log(state,action);
-      return {
-        // ...state,
+      return state ;
+        // {...state,
         // items: [
         //   ...state.items.slice(0, index),
         //   ...state.items.slice(index + 1)
-        // ]
-      };
+        // ]}
+      //;
 
     case basketActions.RESET_BASKET:
-      return state.basket = initialState.basket;
+      return state = initialState;
 
     default:
       return state;

@@ -1,35 +1,36 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { Product } from '../product.model';
-import { BasketAction } from '../_store/actions/basket.actions';
-import { Store } from '@ngrx/store';
-import {IAppState} from '../_store/actions/basket.state';
-import {Observable} from 'rxjs/Observable';
+import { BasketService } from '../basket.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
-    selector: 'app-basket',
-    templateUrl: './basket.component.html',
-    styleUrls: ['./basket.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-basket',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './basket.component.html',
+  styleUrls: ['./basket.component.css'],
 })
 
 export class BasketComponent implements OnInit {
 
-  basket: Store<Product[]>;
+  basket: Product[];
 
-    constructor(
-      private store: Store<IAppState>,
-      private ba: BasketAction
-    ) {
-      this.basket = this.store.select('basket');
-    }
+  constructor(
+   private basketService: BasketService
+  ) {
+    
+  }
 
-    ngOnInit() {
-      this.getState();
-      console.log('basket', this.basket);
-    }
+  ngOnInit() {
+    this.getState().subscribe(state => this.basket = state['basket']);
+    console.log(this.basket);
+  }
 
-    getState() {
-      this.ba.getState();
-    }
+  getState(): Observable<Product[]> {
+    return this.basketService.getState();
+  }
+  
+  removeProduct(product) {
+  this.basketService.remove(product);
+  }
 }
