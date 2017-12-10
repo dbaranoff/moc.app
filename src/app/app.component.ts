@@ -1,6 +1,14 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {Product} from './product.model';
+import { Store } from '@ngrx/store';
+import { AppState } from './common/appstate';  
+import { Observable } from 'rxjs/Observable';
+
+interface State {
+  products: Product[];
+  basket: Product[];
+}
 
 import * as fromRoot from './common/index';
 import * as layout from './common/layout/layout.actions';
@@ -12,11 +20,16 @@ import * as layout from './common/layout/layout.actions';
 })
 export class AppComponent {
 
-  products: Product[];
+  products = [];
+  basket: Observable<Product[]>;
   site_title = 'Pretty Shop!';
 
-  constructor( private store: Store<fromRoot.AppState>
 
-  ) {}
+  constructor(
+    private store: Store<AppState>
+  ) {
+  this.basket = this.store.select('basket');
+  }
+
 
 }
