@@ -25,10 +25,10 @@ export class DataService {
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
-      // send the error to remote logging infrastructure
+      // TODO: Production: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
-      // better job of transforming error for user consumption
+      // TODO: better job of transforming error for user consumption
       console.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.

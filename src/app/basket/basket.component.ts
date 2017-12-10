@@ -1,8 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { Product } from '../product.model';
+
 import { BasketService } from '../basket.service';
 import { Observable } from 'rxjs/Observable';
+
 
 @Component({
   selector: 'app-basket',
