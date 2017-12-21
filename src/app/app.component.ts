@@ -1,8 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {Product} from './product.model';
-import { Store } from '@ngrx/store';
-import { AppState } from './common/appstate';  
+import { AppState } from './common/appstate';
 import { Observable } from 'rxjs/Observable';
 
 interface State {
@@ -20,7 +19,7 @@ import * as layout from './common/layout/layout.actions';
 })
 export class AppComponent {
 
-  products = [];
+  products: Observable<Product[]>;
   basket: Observable<Product[]>;
   site_title = 'Pretty Shop!';
 
@@ -28,7 +27,8 @@ export class AppComponent {
   constructor(
     private store: Store<AppState>
   ) {
-  this.basket = this.store.select('basket');
+    this.products = this.store.select('products');
+    this.basket = this.store.select('basket');
   }
 
 

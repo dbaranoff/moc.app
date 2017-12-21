@@ -41,13 +41,13 @@ export function basketReducer(state: IAppState = initialState, action): IAppStat
       // const index = state((product) => product.id === action.payload.id);
       // console.log(state,action);
 
-      return state ;
+      // return state ;
         // {...state,
         // items: [
         //   ...state.items.slice(0, index),
         //   ...state.items.slice(index + 1)
         // ]}
-      //;
+      // ;
 
 
     case basketActions.RESET_BASKET:

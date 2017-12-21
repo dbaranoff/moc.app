@@ -35,10 +35,11 @@ import { basketReducer } from './common/basket.reducers';
     BrowserModule,
     StoreModule.forRoot({basket: basketReducer}),
     HttpClientModule,
-    AppRoutingModule,
+    AppRoutingModule
+  ],
 
 //    StoreModule.forRoot(),
-    // StoreModule.forRoot(reducers) // store v3 
+    // StoreModule.forRoot(reducers) // store v3
 
   providers: [
     DataService,
