@@ -17,22 +17,8 @@ export class BasketComponent implements OnInit {
 
   basket: Product[];
 
-  constructor(
-   private basketService: BasketService
-  ) {
-    
-  }
+  constructor() {}
 
-  ngOnInit() {
-    this.getState().subscribe(state => this.basket = state['basket']);
-    console.log(this.basket);
-  }
+  ngOnInit() {}
 
-  getState(): Observable<Product[]> {
-    return this.basketService.getState();
-  }
-  
-  removeProduct(product) {
-  this.basketService.remove(product);
-  }
 }

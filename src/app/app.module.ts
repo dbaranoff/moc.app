@@ -15,10 +15,7 @@ import { SliderComponent } from './slider/slider.component';
 import { NavComponent } from './nav/nav.component';
 
 import { AppRoutingModule } from './app-routing.module';
-import { basketReducer } from './common/basket.reducers';
 
-// import { BasketAction } from './_store/actions/basket.actions'; // store v3
-// import { reducers } from './_store/reducers'; // store v3
 
 
 
@@ -33,13 +30,10 @@ import { basketReducer } from './common/basket.reducers';
   ],
   imports: [
     BrowserModule,
-    StoreModule.forRoot({basket: basketReducer}),
     HttpClientModule,
     AppRoutingModule
   ],
 
-//    StoreModule.forRoot(),
-    // StoreModule.forRoot(reducers) // store v3
 
   providers: [
     DataService,
