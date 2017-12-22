@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DataService } from '../data.service';
+import { DataService } from '../../services/data.service';
 
-import { Product } from '../product.model';
+import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-product-list',

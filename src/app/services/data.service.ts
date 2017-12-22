@@ -5,7 +5,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';
 
-import { Product } from './product.model';
+import { Product } from '../models/product.model';
 
 @Injectable()
 export class DataService {

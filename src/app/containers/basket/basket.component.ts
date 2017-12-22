@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
-import { Product } from '../product.model';
+import { Product } from '../../models/product.model';
 
-import { BasketService } from '../basket.service';
+import { BasketService } from '../../services/basket.service';
 import { Observable } from 'rxjs/Observable';
 
 

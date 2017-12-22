@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from '../product.model';
-import { BasketService } from '../basket.service';
+import { Product } from '../../models/product.model';
+import { BasketService } from '../../services/basket.service';
 
 @Component({
   selector: 'app-product',
@@ -11,7 +11,7 @@ import { BasketService } from '../basket.service';
 export class ProductComponent implements OnInit {
 
   @Input() product: Product;
-  
+
   quantity: number;
 
   constructor(
@@ -21,6 +21,5 @@ export class ProductComponent implements OnInit {
   ngOnInit() { }
 
   addProduct(product) {
-    this.basketService.add(product);
   }
 }

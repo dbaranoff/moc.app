@@ -4,20 +4,19 @@ import { StoreModule } from '@ngrx/store';
 
 import { HttpClientModule } from '@angular/common/http';
 
-import { DataService } from './data.service';
-import { BasketService } from './basket.service';
+import { DataService } from './services/data.service';
+import { BasketService } from './services/basket.service';
 
-import { AppComponent } from './app.component';
-import { ProductListComponent } from './product-list/product-list.component';
-import { ProductComponent } from './product/product.component';
-import { BasketComponent } from './basket/basket.component';
-import { SliderComponent } from './slider/slider.component';
-import { NavComponent } from './nav/nav.component';
+import { AppComponent } from './containers/app/app.component';
+import { ProductListComponent } from './containers/product-list/product-list.component';
+import { ProductComponent } from './components/product/product.component';
+import { BasketComponent } from './containers/basket/basket.component';
+import { SliderComponent } from './components/slider/slider.component';
+import { NavComponent } from './components/nav/nav.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
-
-
+import { reducers } from './store';
 
 @NgModule({
   declarations: [
@@ -31,7 +30,8 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(reducers),
   ],
 
 
