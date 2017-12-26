@@ -5,5 +5,18 @@
 	<app-nav></app-nav>
 </header>
 <div class="content-main">
-	<router-outlet></router-outlet>
+	<!--<router-outlet></router-outlet>-->
+  
+  <div class="products-list">
+    <div *ngIf="!(products$ | async)?.length">
+      There are no products. Or we are loading... Wait a sec...
+    </div>
+    
+    <app-product
+      *ngFor="let product of (products$ | async)"
+      [product]="product">
+    </app-product>
+    
+  </div>
+  
 </div>

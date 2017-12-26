@@ -7,7 +7,7 @@ import {AppComponent} from './containers/app/app.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/products', pathMatch: 'full' },
-  { path: 'app', component: AppComponent},
+  // { path: 'app', component: AppComponent},
   { path: 'products', component: ProductListComponent },
   { path: 'basket', component: BasketComponent },
 ];

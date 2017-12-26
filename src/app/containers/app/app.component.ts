@@ -14,8 +14,7 @@ import { Product } from '../../models/product.model';
 })
 export class AppComponent implements OnInit {
 
-  products: Product[];
-  basket: Observable<Product[]>;
+  products$: Observable<Product[]>;
   site_title = 'Pretty Shop!';
 
 
@@ -24,7 +23,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.store.select(fromStore.getAllProducts)
-      .subscribe(state => console.log(state));
+    this.products$ =  this.store.select(fromStore.getAllProducts);
+    this.store.dispatch(new fromStore.LoadProducts());
   }
 }

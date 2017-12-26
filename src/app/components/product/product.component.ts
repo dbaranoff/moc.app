@@ -12,8 +12,6 @@ export class ProductComponent implements OnInit {
 
   @Input() product: Product;
 
-  quantity: number;
-
   constructor(
     private basketService: BasketService
   ) {}
@@ -21,5 +19,6 @@ export class ProductComponent implements OnInit {
   ngOnInit() { }
 
   addProduct(product) {
+    console.log('I want to add the ' + this.product);
   }
 }

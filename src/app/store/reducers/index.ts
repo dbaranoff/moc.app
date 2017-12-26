@@ -10,16 +10,20 @@ export const reducers: ActionReducerMap<AppState> = {
   products: fromProducts.reducer,
 };
 
-export const getProductsState = createFeatureSelector<AppState>(
-  'products'
-);
+/* Only if the Products module is dedicated feature module with Store.forFeature() */
+// export const getProductsState = createFeatureSelector<AppState>(
+//   'products'
+// );
+
+/* If used Store.forRoot() */
+export const theState = (state: AppState) => state;
 
 // products state
-export const getState = createSelector(
-  getProductsState,
+export const getProductsState = createSelector(
+  theState,
   (state: AppState) => state.products
 );
 
-export const getAllProducts = createSelector(getState, fromProducts.getProducts);
-export const getProductsLoaded = createSelector(getState, fromProducts.getProductsLoaded);
-export const getProductsLoading = createSelector(getState, fromProducts.getProductsLoading);
+export const getAllProducts = createSelector(getProductsState, fromProducts.getProducts);
+export const getProductsLoaded = createSelector(getProductsState, fromProducts.getProductsLoaded);
+export const getProductsLoading = createSelector(getProductsState, fromProducts.getProductsLoading);
