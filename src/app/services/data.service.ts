@@ -18,21 +18,7 @@ export class DataService {
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.dataUrl)
       .pipe(
-        catchError(this.handleError('getProducts', []))
+        catchError((error: any) => Observable.throw(error.json()))
       );
-  }
-
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // TODO: Production: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      console.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
   }
 }

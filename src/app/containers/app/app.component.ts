@@ -17,7 +17,6 @@ export class AppComponent implements OnInit {
   products$: Observable<Product[]>;
   site_title = 'Pretty Shop!';
 
-
   constructor(
     private store: Store<fromStore.AppState>
   ) {}

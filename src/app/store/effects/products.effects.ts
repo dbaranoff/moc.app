@@ -1,19 +1,30 @@
 import { Injectable } from '@angular/core';
 
 import { Effect, Actions } from '@ngrx/effects';
-import * as ProductsActions from '../actions/products.actions';
+
+import {of} from 'rxjs/observable/of';
+import { map, switchMap, catchError } from 'rxjs/operators';
+
+import * as productsActions from '../actions/products.actions';
+import * as fromServices from '../../services';
 
 @Injectable()
-export class ProductEffects {
-  constructor(private actions$: Actions) {}
-
+export class ProductsEffects {
+  constructor(
+    private actions$: Actions,
+    private dataService: fromServices.DataService
+  ) {}
 
   @Effect()
 
-    // There is the breakpoint....
-    // https://www.youtube.com/watch?v=xkUOQeGqIGI&list=PLW2eQOsUPlWJRfWGOi9gZdc3rE4Fke0Wv&index=11
-    // time: 09:27
-
-  loadProducts$ = this.actions$.ofType(ProductsActions.LOAD_PRODUCTS);
+  loadProducts$ = this.actions$.ofType(productsActions.LOAD_PRODUCTS)
+    .pipe(
+      switchMap(() => {
+        return this.dataService.getProducts().pipe(
+          map(data => new productsActions.LoadProductsSuccess(data['products'])),
+          catchError(error => of(new productsActions.LoadProductsFail(error)))
+        );
+      })
+    );
 }
 

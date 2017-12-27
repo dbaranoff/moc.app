@@ -1,11 +1,11 @@
 <header class="page-header">
-	<h1 class="site-title">
-		Welcome to {{ site_title }}!
-	</h1>
-	<app-nav></app-nav>
+  <h1 class="site-title">
+    Welcome to {{ site_title }}!
+  </h1>
+  <app-nav></app-nav>
 </header>
 <div class="content-main">
-	<!--<router-outlet></router-outlet>-->
+  <!--<router-outlet></router-outlet>-->
   
   <div class="products-list">
     <div *ngIf="!(products$ | async)?.length">
@@ -16,7 +16,7 @@
       *ngFor="let product of (products$ | async)"
       [product]="product">
     </app-product>
-    
-  </div>
   
+  </div>
+
 </div>
