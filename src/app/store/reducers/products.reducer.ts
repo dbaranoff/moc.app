@@ -2,13 +2,13 @@ import * as fromProducts from '../actions/products.actions';
 import { Product } from '../../models/product.model';
 
 export interface ProductState {
-  data: Product[];
+  entities: { [id: number]: Product };
   loaded: boolean;
   loading: boolean;
 }
 
 export const initialState: ProductState = {
-  data: [],
+  entities: {},
   loaded: false,
   loading: false
 };
@@ -36,12 +36,22 @@ export function reducer(
     }
 
     case fromProducts.LOAD_PRODUCTS_SUCCESS: {
-      const data = action.payload;
+      const products = action.payload;
+
+      const entities = products.reduce((pieces: {[id: number]: Product}, product: Product) => {
+        return {
+          ...pieces,
+          [product.id]: product
+        };
+      }, {
+        ...state.entities
+      });
+
       return {
         ...state,
         loading: false,
         loaded: true,
-        data
+        entities
       };
     }
   }
@@ -49,8 +59,8 @@ export function reducer(
   return state;
 }
 
+export const getProductsEntities = (state: ProductState) => state.entities;
 export const getProductsLoading = (state: ProductState) => state.loading;
 export const getProductsLoaded = (state: ProductState) => state.loaded;
-export const getProducts = (state: ProductState) => state.data;
 
 
