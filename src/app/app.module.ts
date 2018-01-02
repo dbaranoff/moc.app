@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -18,7 +19,7 @@ import { NavComponent } from './components/nav/nav.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { reducers, effects } from './store';
+import { reducers, effects, CustomSerializer } from './store';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { reducers, effects } from './store';
     AppRoutingModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot(effects),
+    StoreRouterConnectingModule,
 
     // TODO: [Production]: Turn this off on Production
     StoreDevtoolsModule.instrument(),
@@ -42,6 +44,7 @@ import { reducers, effects } from './store';
 
 
   providers: [
+    {provide: RouterStateSerializer, useClass: CustomSerializer},
     DataService,
     BasketService
   ],
