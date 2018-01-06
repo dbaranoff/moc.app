@@ -1,11 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Product } from '../../models/product.model';
-import { BasketService } from '../../services/basket.service';
+// import { BasketService } from '../../services/basket.service';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class ProductComponent implements OnInit {
@@ -13,10 +14,12 @@ export class ProductComponent implements OnInit {
   @Input() product: Product;
 
   constructor(
-    private basketService: BasketService
+    // private basketService: BasketService
   ) {}
 
-  ngOnInit() { }
+  ngOnInit() {
+
+  }
 
   addProduct(product) {
     console.log('I want to add the ' + this.product);

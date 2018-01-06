@@ -12,6 +12,7 @@ import { BasketService } from './services/basket.service';
 
 import { AppComponent } from './containers/app/app.component';
 import { ProductListComponent } from './containers/product-list/product-list.component';
+import { ProductDetailComponent } from './containers/product-detail/product-detail.component';
 import { BasketComponent } from './containers/basket/basket.component';
 import { ProductComponent } from './components/product/product.component';
 import { SliderComponent } from './components/slider/slider.component';
@@ -25,6 +26,7 @@ import { reducers, effects, CustomSerializer } from './store';
   declarations: [
     AppComponent,
     ProductListComponent,
+    ProductDetailComponent,
     ProductComponent,
     BasketComponent,
     SliderComponent,

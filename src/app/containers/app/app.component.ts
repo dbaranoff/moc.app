@@ -14,7 +14,7 @@ import { Product } from '../../models/product.model';
 })
 export class AppComponent implements OnInit {
 
-  products$: Observable<Product[]>;
+
   site_title = 'Pretty Shop!';
 
   constructor(
@@ -22,7 +22,6 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.products$ =  this.store.select(fromStore.getAllProducts);
     this.store.dispatch(new fromStore.LoadProducts());
   }
 }

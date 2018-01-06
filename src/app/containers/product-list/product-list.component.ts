@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DataService } from '../../services/data.service';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import * as fromStore from '../../store';
+
+// import { DataService } from '../../services/data.service';
 
 import { Product } from '../../models/product.model';
 
@@ -9,19 +13,21 @@ import { Product } from '../../models/product.model';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
+
 export class ProductListComponent implements OnInit {
 
-data: Product[];
-//   data: any[];
+  products$: Observable<Product[]>;
 
-  constructor(private dataService: DataService) {}
+  constructor(
+    // private dataService: DataService,
+    private store: Store<fromStore.AppState>
+  ) {}
 
   ngOnInit() {
-    this.getProducts();
+    this.products$ =  this.store.select(fromStore.getAllProducts);
   }
 
-  getProducts(): void {
-    this.dataService.getProducts()
-      .subscribe(data => this.data = data['products']);
+  addProduct(productId: number) {
+    console.log('Adding product with ID:' , productId);
   }
 }
