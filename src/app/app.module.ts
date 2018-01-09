@@ -53,3 +53,4 @@ import { reducers, effects, CustomSerializer } from './store';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

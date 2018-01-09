@@ -1,24 +1,18 @@
 
 <h2>Basket Contents:</h2>
 
-<div *ngIf="basket">
+<div *ngIf="basket$ | async">
 	<ul class="basket-list product-list">
-		<li *ngFor="let product of basket">
+		<li *ngFor="let product of basket$| async">
 
-			<div class="product-container">
-				<app-slider [images]="product.images"></app-slider>
-				<div class="content">
-					<h3 class="product-title" id={{product.id}}>{{product.title}}</h3>
-					<div [innerHTML]="product.body_html"></div>
-					<span class="price"> {{product.variants[0].price |
-						currency}} </span>
-					<button class="btn btn-add" (click)="removeProduct(product)">Remove
-						from basket</button>
-				</div>
-			</div>
+            <app-product [product]="product"></app-product>
+            
+            <div class="controls">
+                <button class="btn btn-remove" (click)="removeProduct(product.id)">Remove from basket</button>
+            </div>
 		</li>
 
 	</ul>
 </div>
 
-<div *ngIf="!basket">Please, add Products to the Basket!</div>
+<div *ngIf="!basket$ | async">Please, add Products to the Basket!</div>

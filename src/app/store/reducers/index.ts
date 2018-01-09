@@ -1,20 +1,22 @@
 import { ActionReducerMap, createSelector } from '@ngrx/store';
 
-
 import * as fromRouter from '@ngrx/router-store';
 import * as routerReducer from './router.reducer';
 import * as fromProducts from './products.reducer';
+import * as fromBasket from './basket.reducer';
 
 export * from './router.reducer';
 
 export interface AppState {
   products: fromProducts.ProductState;
+  basket: fromBasket.BasketState;
   router: fromRouter.RouterReducerState<routerReducer.RouterStateUrl>;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
   router: fromRouter.routerReducer,
   products: fromProducts.reducer,
+  basket: fromBasket.reducer
 };
 
 /* Only if the Products module is dedicated feature module with Store.forFeature() */
@@ -31,7 +33,13 @@ export const getProductsState = createSelector(
   (state: AppState) => state.products
 );
 
+// basket state
+export const getBasketState = createSelector(
+  theState,
+  (state: AppState) => state.basket
+);
 
+// router state
 export const getRouterState = createSelector(
   theState,
   (state: AppState) => state.router

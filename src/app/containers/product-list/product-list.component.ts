@@ -24,10 +24,11 @@ export class ProductListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.products$ =  this.store.select(fromStore.getAllProducts);
+    this.products$ = this.store.select(fromStore.getAllProducts);
   }
 
-  addProduct(productId: number) {
-    console.log('Adding product with ID:' , productId);
+  addProduct(productId: number, quantity) {
+    console.log('Adding product with ID:' , productId, ' quantity: ', quantity);
+    this.store.dispatch(new fromStore.AddProduct({productId, quantity: parseInt(quantity, 10)}));
   }
 }

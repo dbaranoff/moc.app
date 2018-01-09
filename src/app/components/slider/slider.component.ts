@@ -1,6 +1,8 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
+import {Image} from '../../models/product.model';
+
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
@@ -11,7 +13,7 @@ export class SliderComponent implements OnInit {
 
   @Input() images: {};
 
-  private activeSlide: any[];
+  activeSlide: Image;
 
   constructor() {}
 
